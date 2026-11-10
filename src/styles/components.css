@@ -686,7 +686,7 @@ html[lang="fa"] .marquee-track { animation-direction: reverse; }
   text-decoration: none;
   flex-shrink: 0;
 }
-.ns-logo .ns-logo-mark { width: 44px; height: 44px; }
+.ns-logo .ns-logo-mark { width: 44px; height: 44px; object-fit: contain; display: block; }
 .ns-logo-text { display: flex; flex-direction: column; line-height: 1.2; }
 .ns-logo-word {
   font-weight: 800;

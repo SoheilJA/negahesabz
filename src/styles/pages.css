@@ -234,6 +234,6 @@
 /* ---------- 404 ---------- */
 .notfound { min-height: 88svh; display: grid; place-items: center; text-align: center; }
 .nf-content { display: flex; flex-direction: column; align-items: center; gap: 1.1rem; }
-.nf-mark svg { width: 64px; height: 64px; }
+.nf-mark svg, .nf-mark img { width: 64px; height: 64px; object-fit: contain; }
 .nf-cta { display: flex; gap: 0.9rem; flex-wrap: wrap; justify-content: center; margin-block-start: 0.6rem; }
 .nf-content .ns-lead { max-width: 40ch; }
