@@ -1,16 +1,15 @@
-﻿<!DOCTYPE html>
-<html>
+﻿<!doctype html>
+<html lang="fa">
   <head>
-    <meta charset="utf-8">
-    <title>Redirecting...</title>
+    <meta charset="UTF-8" />
+    <title>Negah Sabz</title>
     <script>
-      (function() {
-        var l = window.location;
+      (function (l) {
         var base = '/negahesabz';
         var path = l.pathname.indexOf(base) === 0 ? l.pathname.slice(base.length) : l.pathname;
-        if (!path || path === '/') path = '/fa/';
-        l.replace(l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '') + base + '/?p=' + encodeURIComponent(path + l.search + l.hash));
-      })();
+        var query = l.search ? '&' + l.search.slice(1).replace(/&/g, '~and~') : '';
+        l.replace(l.protocol + '//' + l.host + base + '/?p=' + path + query + l.hash);
+      })(window.location);
     </script>
   </head>
   <body></body>
