@@ -83,7 +83,7 @@ export function organizationLD(lang) {
     name: names[lang] || names.fa,
     alternateName: ['Negah Sabz', 'نگاه سبز', 'PayamTejarat Negahe Sabz'],
     url: `${SITE}/${lang}/`,
-    logo: `${SITE}/favicon.svg`,
+    logo: `${SITE}/images/772-logo.png`,
     email: 'info@negahesabz.com',
     telephone: '+98-51-3723-7544',
     identifier: { '@type': 'PropertyValue', name: 'Registration No.', value: '62435' },
