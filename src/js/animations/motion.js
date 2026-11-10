@@ -21,16 +21,30 @@ const pageCleanups = [];
 export function initLenis() {
   if (lenis || prefersReducedMotion()) return lenis;
   lenis = new Lenis({
-    duration: 1.15,
-    easing: (t) => Math.min(1, 1.002 ** Math.pow(2, 10 * t) - 0.001), // luxe ease
+    autoRaf: false,
+    duration: 1.2,
     smoothWheel: true,
-    wheelMultiplier: 1,
-    touchMultiplier: 1.6,
+    syncTouch: false,
   });
   lenis.on('scroll', ScrollTrigger.update);
-  const raf = (time) => lenis.raf(time * 1000);
-  gsap.ticker.add(raf);
+  gsap.ticker.add((time) => {
+    lenis.raf(time * 1000);
+  });
   gsap.ticker.lagSmoothing(0);
+  ScrollTrigger.scrollerProxy(document.documentElement, {
+    scrollTop(value) {
+      if (arguments.length) {
+        lenis.scrollTo(value, { immediate: true });
+      }
+      return lenis.scroll;
+    },
+    getBoundingClientRect() {
+      return { top: 0, left: 0, width: window.innerWidth, height: window.innerHeight };
+    },
+    pinType: document.documentElement.style.transform ? 'transform' : 'fixed',
+  });
+  ScrollTrigger.defaults({ scroller: document.documentElement });
+  ScrollTrigger.addEventListener('refresh', () => lenis.resize());
   // lenis is global (app lifetime) — do not destroy on per-page cleanup
   return lenis;
 }
