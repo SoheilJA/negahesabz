@@ -215,7 +215,11 @@ export function initPresence(ctx) {
           setTimeout(() => cards[idx]?.classList.remove('is-flash'), 1600);
         });
       });
-      ctx.pageCleanup = () => globe.dispose();
+      const prevCleanup = ctx.pageCleanup;
+      ctx.pageCleanup = () => {
+        prevCleanup?.();
+        globe.dispose();
+      };
     } catch (e) {
       wrap.innerHTML = `<img src="/images/atmos/cargo-aerial.webp" alt="" class="img-cover" style="border-radius:6px"/>`;
     }

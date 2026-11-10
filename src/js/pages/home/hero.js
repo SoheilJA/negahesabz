@@ -56,7 +56,11 @@ export function initHero(ctx) {
           { id: 'om', lat: 23.59, lng: 58.41 },
         ],
       });
-      ctx.pageCleanup = () => globe.dispose();
+      const prevCleanup = ctx.pageCleanup;
+      ctx.pageCleanup = () => {
+        prevCleanup?.();
+        globe.dispose();
+      };
     } catch (e) {
       wrap.innerHTML = `<img src="/images/atmos/cargo-sunset.webp" alt="" class="img-cover" style="opacity:.5"/>`;
     }
