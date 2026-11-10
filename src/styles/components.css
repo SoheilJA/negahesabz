@@ -648,6 +648,7 @@ html[lang="ru"] .stat-num { font-weight: 600; }
 }
 .marquee-track:hover { animation-play-state: paused; }
 [dir="rtl"] .marquee-track { animation-direction: reverse; }
+html[lang="fa"] .marquee-track { animation-direction: reverse; }
 @keyframes ns-marquee {
   to { transform: translateX(calc(-1 * (50% + 1.75rem))); }
 }
