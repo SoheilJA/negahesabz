@@ -1,12 +1,13 @@
-/**
- * Cinematic preloader — a fine gold route drawing across a dotted world,
+﻿/**
+ * Cinematic preloader — route drawing across a dotted world,
  * the Negah Sabz wordmark revealing, real asset progress, veil exit.
  * First load per session only; internal navigations use a light fade.
  */
 import { gsap } from 'gsap';
 import { MotionPathPlugin } from 'gsap/MotionPathPlugin';
-import { t, getLang } from './i18n.js';
+import { t } from './i18n.js';
 import { prefersReducedMotion } from '../animations/motion.js';
+import { logoMarkInline } from '../components/logo.js';
 
 gsap.registerPlugin(MotionPathPlugin);
 
@@ -20,16 +21,15 @@ const SVG = `
 
 function buildDotsGroup() {
   // coarse decorative dot grid (no geo data — pure ambience)
-  const rows = [0, 1];
   const groups = document.querySelectorAll('#ns-preloader .ns-pre-dots');
   let n = 0;
-  groups.forEach((g, gi) => {
+  groups.forEach((g) => {
     let html = '';
     for (let y = 20; y <= 240; y += 22) {
       for (let x = 24; x <= 536; x += 22) {
         const band = x < 150 || x > 420 ? 0 : 1;
         if ((n + band) % 3 !== 0) { n++; continue; }
-        const r = 1 + (x * y) % 3 * 0.25;
+        const r = 1 + ((x * y) % 3) * 0.25;
         html += `<circle cx="${x}" cy="${y}" r="${r.toFixed(2)}"/>`;
         n++;
       }
@@ -51,16 +51,13 @@ export function initPreloader() {
     return Promise.resolve();
   }
 
-  const lang = getLang();
   const wordmark = t('brand.wordmark');
   el.classList.add('is-active');
   el.innerHTML = `
     <div class="ns-pre-inner">
+      <div class="ns-pre-logo">${logoMarkInline()}</div>
       ${SVG}
-      <div class="ns-pre-wordmark" aria-label="${wordmark}">${wordmark
-        .split('')
-        .map((c) => `<span class="wm-ch">${c === ' ' ? '&nbsp;' : c}</span>`)
-        .join('')}</div>
+      <div class="ns-pre-wordmark" aria-label="${wordmark}">${wordmark}</div>
       <div class="ns-latin ns-pre-latin">NEGAH SABZ · ${t('preloader.intl')}</div>
       <div class="ns-pre-progress">
         <div class="ns-pre-bar"><div class="ns-pre-bar-fill"></div></div>
@@ -76,7 +73,6 @@ export function initPreloader() {
   const progress = { v: 0 };
   const countEl = el.querySelector('.ns-pre-count');
   const barFill = el.querySelector('.ns-pre-bar-fill');
-  const chars = el.querySelectorAll('.wm-ch');
   const path = el.querySelector('#ns-pre-path');
   const movingDot = el.querySelector('#ns-pre-dot');
   const pathLen = path.getTotalLength();
@@ -89,7 +85,11 @@ export function initPreloader() {
       else res();
     })
   );
-  drivers.push(new Promise((res) => (window.innerWidth ? setTimeout(res, 350) : window.addEventListener('load', () => setTimeout(res, 150), { once: true }))));
+  drivers.push(
+    new Promise((res) =>
+      window.innerWidth ? setTimeout(res, 350) : window.addEventListener('load', () => setTimeout(res, 150), { once: true })
+    )
+  );
 
   let realDone = false;
   Promise.race([Promise.all(drivers), new Promise((r) => setTimeout(r, 4000))]).then(() => (realDone = true));
@@ -125,7 +125,8 @@ export function initPreloader() {
         },
         0.2
       )
-      .from(chars, { opacity: 0, y: 26, stagger: 0.055, duration: 0.75 }, 0.35)
+      .from('.ns-pre-logo', { opacity: 0, y: 18, scale: 0.94, duration: 0.7 }, 0.25)
+      .from('.ns-pre-wordmark', { opacity: 0, y: 22, duration: 0.75 }, 0.4)
       .from('.ns-pre-latin', { opacity: 0, letterSpacing: '0.6em', duration: 0.9 }, 0.8)
       .from('.ns-pre-progress', { opacity: 0, y: 10, duration: 0.5 }, 0.7)
       // progress updates
