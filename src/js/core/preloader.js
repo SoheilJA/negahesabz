@@ -55,7 +55,7 @@ export function initPreloader() {
   el.classList.add('is-active');
   el.innerHTML = `
     <div class="ns-pre-inner">
-      <div class="ns-pre-logo">${logoMarkInline()}</div>
+      <div class="ns-pre-logo">${logoMarkInline('ns-pre-mark')}</div>
       ${SVG}
       <div class="ns-pre-wordmark" aria-label="${wordmark}">${wordmark}</div>
       <div class="ns-latin ns-pre-latin">NEGAH SABZ · ${t('preloader.intl')}</div>
