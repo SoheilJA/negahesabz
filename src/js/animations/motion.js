@@ -31,11 +31,7 @@ export function initLenis() {
   const raf = (time) => lenis.raf(time * 1000);
   gsap.ticker.add(raf);
   gsap.ticker.lagSmoothing(0);
-  pageCleanups.push(() => {
-    gsap.ticker.remove(raf);
-    lenis.destroy();
-    lenis = null;
-  });
+  // lenis is global (app lifetime) — do not destroy on per-page cleanup
   return lenis;
 }
 
