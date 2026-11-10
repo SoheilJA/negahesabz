@@ -6,6 +6,7 @@
  *         /{lang}/products/, /{lang}/products/{slug}/
  */
 import { LANGS, DEFAULT_LANG, setLang, getLang } from './i18n.js';
+import { scrollToTop, scrollToEl } from '../animations/motion.js';
 
 const ROUTE_TABLE = [
   { re: /^\/?$/, kind: 'redirect', to: () => `/${DEFAULT_LANG}/` },
@@ -140,7 +141,7 @@ async function transitionTo(pathname, search = '') {
   const query = Object.fromEntries(new URLSearchParams(search));
   const ctx = { lang: parsed.lang, page: parsed.page, params: parsed.params, query, cleanup: null };
   await renderPage(ctx);
-  window.scrollTo(0, 0);
+  scrollToTop(true);
 }
 
 export async function renderCurrent() {
@@ -161,7 +162,7 @@ export function initRouterLinks() {
       // in-page anchor — let Lenis handle smoothness
       e.preventDefault();
       const el = document.getElementById(href.slice(1));
-      if (el) el.scrollIntoView({ behavior: 'smooth' });
+      if (el) scrollToEl(el, -100);
       return;
     }
     const url = new URL(href, window.location.origin);

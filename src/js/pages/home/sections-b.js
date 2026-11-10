@@ -210,7 +210,9 @@ export function initPresence(ctx) {
         el.addEventListener('click', () => {
           const cards = document.querySelectorAll('.presence-card');
           const idx = { hq: 0, ru: 1, tj: 2, uz: 3, om: 4 }[id];
-          cards[idx]?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          import('../../animations/motion.js').then(({ scrollToEl }) => {
+            if (cards[idx]) scrollToEl(cards[idx], -120);
+          });
           cards[idx]?.classList.add('is-flash');
           setTimeout(() => cards[idx]?.classList.remove('is-flash'), 1600);
         });
