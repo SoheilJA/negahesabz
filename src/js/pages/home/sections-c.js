@@ -8,6 +8,7 @@ import { brands } from '../../data/brands.js';
 import { services } from '../../data/services.js';
 import { articles } from '../../data/articles.js';
 import { company } from '../../data/company.js';
+import { route, withBase } from '../../utils/base.js';
 
 /* -------- 09 — BRANDS -------- */
 export function renderBrands(ctx) {
@@ -28,10 +29,10 @@ export function renderBrands(ctx) {
             <h3 class="ns-h2 brand-local">${loc(b.local)}</h3>
             <p class="ns-label">${loc(b.tagline)}</p>
             <p class="ns-small brand-desc">${loc(b.desc)}</p>
-            <a class="link-arrow" href="/${lang}/products/?brand=${b.id}">${t('home.brands.viewProducts')} ${icon('arrow-right', 'icon-flip')}</a>
+            <a class="link-arrow" href="${route(`/${lang}/products/?brand=${b.id}`)}">${t('home.brands.viewProducts')} ${icon('arrow-right', 'icon-flip')}</a>
           </div>
           <div class="brand-media" data-stagger>
-            ${b.images.map((im) => `<div class="img-frame brand-img"><img src="${im}" alt="${b.latin}" loading="lazy" class="img-cover img-duo"/></div>`).join('')}
+            ${b.images.map((im) => `<div class="img-frame brand-img"><img src="${withBase(im)}" alt="${b.latin}" loading="lazy" class="img-cover img-duo"/></div>`).join('')}
           </div>
         </div>
       </div>
@@ -58,7 +59,7 @@ export function renderServices(ctx) {
             <p class="ns-small">${loc(s.desc)}</p>
           </div>
           <div class="service-media img-frame">
-            <img src="${s.image}" alt="${loc(s.title)}" loading="lazy" class="img-cover img-duo"/>
+            <img src="${withBase(s.image)}" alt="${loc(s.title)}" loading="lazy" class="img-cover img-duo"/>
           </div>
         </article>`
           )
@@ -103,7 +104,7 @@ export function renderLeadership(ctx) {
             (l) => `
         <figure class="lead-card" data-reveal="fade-up">
           <div class="img-frame lead-photo">
-            <img src="${l.img}" alt="${loc(l.name)}" loading="lazy" class="img-cover img-duo"/>
+            <img src="${withBase(l.img)}" alt="${loc(l.name)}" loading="lazy" class="img-cover img-duo"/>
           </div>
           <figcaption>
             <h3 class="ns-h3">${loc(l.name)}</h3>
@@ -128,7 +129,7 @@ export function renderInsights(ctx) {
       <div class="insights-grid">
         <article class="insight-card is-lead" data-reveal="fade-up">
           <div class="img-frame insight-media">
-            <img src="${a.img}" alt="${loc(a.title)}" loading="lazy" class="img-cover img-duo"/>
+            <img src="${withBase(a.img)}" alt="${loc(a.title)}" loading="lazy" class="img-cover img-duo"/>
           </div>
           <div class="insight-body">
             <p class="ns-tiny insight-date">${loc(a.date)}</p>
@@ -148,7 +149,7 @@ export function renderInsights(ctx) {
               <p class="ns-small">${loc(ar.excerpt)}</p>
             </div>
             <div class="img-frame insight-media-sm">
-              <img src="${ar.img}" alt="${loc(ar.title)}" loading="lazy" class="img-cover img-duo"/>
+              <img src="${withBase(ar.img)}" alt="${loc(ar.title)}" loading="lazy" class="img-cover img-duo"/>
             </div>
           </article>`
             )
@@ -156,7 +157,7 @@ export function renderInsights(ctx) {
           <ul class="insight-rest ns-small" data-reveal="fade-up">
             ${rest.map((r) => `<li>${icon('info')}<span>${loc(r.title)}</span></li>`).join('')}
           </ul>
-          ${btn(t('home.insights.viewAll'), `/${lang}/`, 'ghost-dark', { icon: false })}
+          ${btn(t('home.insights.viewAll'), route(`/${lang}/`), 'ghost-dark', { icon: false })}
         </div>
       </div>
     </div>
@@ -169,14 +170,14 @@ export function renderCTA(ctx) {
   return `
   <section class="cta-final" id="cta">
     <div class="img-frame cta-bg">
-      <img src="/images/atmos/cargo-sunset.webp" alt="" class="img-cover" data-parallax="0.15"/>
+      <img src="${withBase('/images/atmos/cargo-sunset.webp')}" alt="" class="img-cover" data-parallax="0.15"/>
     </div>
     <div class="cta-veil"></div>
     <div class="container-x cta-content">
       <h2 class="ns-display" data-reveal="fade-up">${t('home.cta.title')}</h2>
       <p class="ns-lead" data-reveal="fade-up" data-delay="0.12">${t('home.cta.sub')}</p>
       <div data-reveal="fade-up" data-delay="0.24">
-        ${btn(t('home.cta.btn'), `/${lang}/contact/`, 'primary')}
+        ${btn(t('home.cta.btn'), route(`/${lang}/contact/`), 'primary')}
       </div>
     </div>
   </section>`;

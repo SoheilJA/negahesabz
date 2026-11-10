@@ -1,16 +1,17 @@
-/**
+﻿/**
  * Logo component — brand mark + wordmark.
  * Variants: 'light' (on dark bg) and 'dark' (on light bg).
  */
 import { t } from '../core/i18n.js';
+import { route, withBase } from '../utils/base.js';
 
-const MARK = `<img src="/images/772-logo.png" class="ns-logo-mark" alt="" aria-hidden="true" />`;
+const MARK = `<img src="${withBase('/images/772-logo.png')}" class="ns-logo-mark" alt="" aria-hidden="true" />`;
 
 /** Logo link — navigates to the current language home. */
 export function renderLogo(variant = 'light') {
   const lang = document.documentElement.lang || 'fa';
   return `
-  <a href="/${lang}/" class="ns-logo ns-logo--${variant}" aria-label="${t('common.logo')}">
+  <a href="${route(`/${lang}/`)}" class="ns-logo ns-logo--${variant}" aria-label="${t('common.logo')}">
     ${MARK}
     <span class="ns-logo-text">
       <span class="ns-logo-word">${t('brand.wordmark')}</span>

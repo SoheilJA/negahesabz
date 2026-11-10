@@ -1,4 +1,4 @@
-/**
+﻿/**
  * SPA router — language-aware routes with pushState navigation,
  * page lifecycle (render → init → cleanup), 404 and root redirect.
  *
@@ -7,6 +7,7 @@
  */
 import { LANGS, DEFAULT_LANG, setLang, getLang } from './i18n.js';
 import { scrollToTop, scrollToEl } from '../animations/motion.js';
+import { stripBase, route } from '../utils/base.js';
 
 const ROUTE_TABLE = [
   { re: /^\/?$/, kind: 'redirect', to: () => `/${DEFAULT_LANG}/` },
@@ -37,8 +38,9 @@ async function resolvePage(name) {
 }
 
 export function matchRoute(pathname) {
+  const appPath = stripBase(pathname);
   for (const r of ROUTE_TABLE) {
-    const m = pathname.match(r.re);
+    const m = appPath.match(r.re);
     if (m) return { route: r, match: m };
   }
   return null;
@@ -47,19 +49,19 @@ export function matchRoute(pathname) {
 export function parsePath(pathname) {
   const res = matchRoute(pathname);
   if (!res) return { lang: getLang(), page: 'notfound', params: {} };
-  const { route, match } = res;
-  if (route.kind === 'redirect') {
-    return { redirect: route.to() };
+  const { route: r, match } = res;
+  if (r.kind === 'redirect') {
+    return { redirect: r.to() };
   }
   const lang = match[1] || DEFAULT_LANG;
   const params = {};
-  if (route.name === 'product') params.slug = decodeURIComponent(match[2]);
-  return { lang, page: route.name, params };
+  if (r.name === 'product') params.slug = decodeURIComponent(match[2]);
+  return { lang, page: r.name, params };
 }
 
 /** Path of the current page rendered in another language. */
 export function altPath(lang) {
-  const path = window.location.pathname;
+  const path = stripBase(window.location.pathname);
   const cur = parsePath(path);
   if (!cur || cur.redirect) return `/${lang}/`;
   if (cur.page === 'notfound') return `/${lang}/`;
@@ -120,20 +122,23 @@ async function renderPage(ctx) {
 export async function navigate(path, { push = true } = {}) {
   if (navigating) return;
   const target = new URL(path, window.location.origin);
-  if (target.pathname === window.location.pathname && target.search === window.location.search) return;
+  const targetApp = stripBase(target.pathname);
+  const currentApp = stripBase(window.location.pathname);
+  if (targetApp === currentApp && target.search === window.location.search) return;
   navigating = true;
   try {
-    if (push) window.history.pushState({}, '', target.href);
-    await transitionTo(target.pathname, target.search);
+    if (push) window.history.pushState({}, '', route(targetApp) + target.search);
+    await transitionTo(targetApp, target.search);
   } finally {
     navigating = false;
   }
 }
 
 async function transitionTo(pathname, search = '') {
-  const parsed = parsePath(pathname);
+  const appPath = stripBase(pathname);
+  const parsed = parsePath(appPath);
   if (parsed.redirect) {
-    window.history.replaceState({}, '', parsed.redirect);
+    window.history.replaceState({}, '', route(parsed.redirect));
     await transitionTo(parsed.redirect);
     return;
   }

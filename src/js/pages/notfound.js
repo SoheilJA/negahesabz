@@ -5,6 +5,7 @@ import { t } from '../core/i18n.js';
 import { setSEO } from '../core/seo.js';
 import { btn } from '../components/ui.js';
 import { logoMarkInline } from '../components/logo.js';
+import { route, withBase } from '../utils/base.js';
 
 export default {
   render(ctx) {
@@ -17,8 +18,8 @@ export default {
         <h1 class="ns-h2">${t('common.notFoundTitle')}</h1>
         <p class="ns-lead">${t('common.notFoundSub')}</p>
         <div class="nf-cta">
-          ${btn(t('common.notFoundCta'), `/${lang}/`, 'primary')}
-          ${btn(t('nav.products'), `/${lang}/products/`, 'ghost-light')}
+          ${btn(t('common.notFoundCta'), route(`/${lang}/`), 'primary')}
+          ${btn(t('nav.products'), route(`/${lang}/products/`), 'ghost-light')}
         </div>
       </div>
     </section>`;
@@ -28,7 +29,7 @@ export default {
     setSEO({
       title: t('meta.notfound.title'),
       desc: t('meta.notfound.desc'),
-      path: `/${ctx.lang}/`,
+      path: route(`/${ctx.lang}/`),
     });
   },
 };

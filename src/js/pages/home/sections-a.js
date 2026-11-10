@@ -4,6 +4,7 @@
 import { t, loc } from '../../core/i18n.js';
 import { sectionHeader, btn, mediaFrame } from '../../components/ui.js';
 import { company } from '../../data/company.js';
+import { route, withBase } from '../../utils/base.js';
 
 /* -------- 02 — INTRODUCTION -------- */
 export function renderIntro(ctx) {
@@ -17,7 +18,7 @@ export function renderIntro(ctx) {
           <p class="ns-body intro-p1" data-reveal="fade-up">${t('home.intro.p1')}</p>
           <p class="ns-body" data-reveal="fade-up" data-delay="0.1">${t('home.intro.p2')}</p>
           <div class="intro-foot" data-reveal="fade-up" data-delay="0.18">
-            ${btn(t('home.intro.cta'), `/${lang}/about/`, 'ghost-dark', { icon: false })}
+            ${btn(t('home.intro.cta'), route(`/${lang}/about/`), 'ghost-dark', { icon: false })}
             <p class="ns-tiny intro-since">${t('home.intro.since')}</p>
           </div>
         </div>
@@ -84,7 +85,7 @@ export function renderDivisions(ctx) {
             <p class="ns-small dr-desc">${d.d}</p>
           </div>
           <div class="dr-media img-frame">
-            <img src="${DIVISION_MEDIA[i] || DIVISION_MEDIA[0]}" alt="${d.t}" loading="lazy" class="img-cover img-duo"/>
+            <img src="${withBase(DIVISION_MEDIA[i] || DIVISION_MEDIA[0])}" alt="${d.t}" loading="lazy" class="img-cover img-duo"/>
           </div>
         </li>`
           )

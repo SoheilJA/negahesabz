@@ -9,6 +9,7 @@ import { refreshIcons, icon } from '../utils/icons.js';
 import { products } from '../data/products/index.js';
 import { categories } from '../data/categories.js';
 import { brands } from '../data/brands.js';
+import { route, withBase } from '../utils/base.js';
 
 const PAGE_SIZE = 12;
 
@@ -18,11 +19,11 @@ export default {
     return `
     <section class="page-hero page-hero-sm catalog-hero bg-forest-deep">
       <div class="img-frame ph-bg">
-        <img src="/images/atmos/containers.webp" alt="" class="img-cover" data-parallax="0.1"/>
+        <img src="${withBase('/images/atmos/containers.webp')}" alt="" class="img-cover" data-parallax="0.1"/>
       </div>
       <div class="ph-veil"></div>
       <div class="container-x ph-content">
-        ${breadcrumb([{ name: t('product.breadcrumbHome'), path: `/${lang}/` }, { name: t('nav.products') }])}
+        ${breadcrumb([{ name: t('product.breadcrumbHome'), path: route(`/${lang}/`) }, { name: t('nav.products') }])}
         <p class="ns-label" data-reveal="fade-up">${t('catalog.hero.kicker')}</p>
         <h1 class="ns-display" data-reveal="fade-up" data-delay="0.1">${t('catalog.hero.title')}</h1>
         <p class="ns-lead" data-reveal="fade-up" data-delay="0.2">${t('catalog.hero.sub')}</p>
@@ -88,13 +89,13 @@ export default {
     setSEO({
       title: t('meta.catalog.title'),
       desc: t('meta.catalog.desc'),
-      path: `/${ctx.lang}/products/`,
+      path: route(`/${ctx.lang}/products/`),
     });
     setJSONLD([
       organizationLD(ctx.lang),
       breadcrumbLD([
-        { name: t('nav.home'), path: `/${ctx.lang}/` },
-        { name: t('nav.products'), path: `/${ctx.lang}/products/` },
+        { name: t('nav.home'), path: route(`/${ctx.lang}/`) },
+        { name: t('nav.products'), path: route(`/${ctx.lang}/products/`) },
       ]),
     ]);
     refreshIcons();

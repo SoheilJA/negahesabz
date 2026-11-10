@@ -99,19 +99,24 @@ export function initPreloader() {
     if (realDone && progress.v < 100) progress.v = Math.min(100, progress.v + 18);
   }, 160);
 
+  // Safety: never let preloader hang forever if animation/runtime fails
+  const failSafe = setTimeout(() => {
+    try { clearInterval(creep); el.remove(); document.getElementById('ns-boot')?.remove(); sessionStorage.setItem('ns-seen', '1'); } catch {}
+  }, 7000);
+
   return new Promise((resolve) => {
-    const tl = gsap.timeline({
-      defaults: { ease: 'power3.out' },
-      onComplete: () => {
-        clearInterval(creep);
-        el.remove();
-        sessionStorage.setItem('ns-seen', '1');
-        resolve();
-      },
-    });
+    const finish = () => {
+      try { clearTimeout(failSafe); clearInterval(creep); el.remove(); sessionStorage.setItem('ns-seen', '1'); } catch {}
+      resolve();
+    };
+    try {
+      const tl = gsap.timeline({
+        defaults: { ease: 'power3.out' },
+        onComplete: finish,
+      });
 
     // route line draws while progress runs
-    gsap.set(path, { strokeDasharray: `${pathLen}`, strokeDashoffset: pathLen });
+    if (path && pathLen) gsap.set(path, { strokeDasharray: `${pathLen}`, strokeDashoffset: pathLen });
 
     tl.from('.ns-pre-dots circle', { opacity: 0, scale: 0.2, stagger: 0.0018, duration: 0.7, transformOrigin: 'center' }, 0)
       .to(path, { strokeDashoffset: 0, duration: 2.0, ease: 'power2.inOut' }, 0.2)
@@ -119,7 +124,7 @@ export function initPreloader() {
       .to(
         movingDot,
         {
-          motionPath: { path, align: path, alignOrigin: [0.5, 0.5] },
+          motionPath: path ? { path, align: path, alignOrigin: [0.5, 0.5] } : undefined,
           duration: 2.0,
           ease: 'power2.inOut',
         },
@@ -138,8 +143,8 @@ export function initPreloader() {
           ease: 'power1.inOut',
           onUpdate: () => {
             const p = Math.min(100, Math.round(Math.max(progress.v, realDone ? 100 : 0)));
-            countEl.textContent = String(p).padStart(2, '0') + '%';
-            barFill.style.width = p + '%';
+            if (countEl) countEl.textContent = String(p).padStart(2, '0') + '%';
+            if (barFill) barFill.style.width = p + '%';
           },
         },
         0.25
@@ -149,5 +154,8 @@ export function initPreloader() {
       .to('.ns-pre-veil.is-top', { yPercent: -101, duration: 0.85, ease: 'power4.inOut' }, '<0.15')
       .to('.ns-pre-veil.is-bottom', { yPercent: 101, duration: 0.85, ease: 'power4.inOut' }, '<')
       .set(el, { display: 'none' });
+    } catch (e) {
+      finish();
+    }
   });
 }

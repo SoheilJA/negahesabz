@@ -6,6 +6,7 @@ import { sectionHeader, btn, productCard } from '../../components/ui.js';
 import { icon } from '../../utils/icons.js';
 import { getFeatured } from '../../data/products/index.js';
 import { company } from '../../data/company.js';
+import { route, withBase } from '../../utils/base.js';
 
 /* -------- 05 — EXPORT SHOWCASE (horizontal) -------- */
 export function renderShowcase(ctx) {
@@ -23,7 +24,7 @@ export function renderShowcase(ctx) {
         <div class="showcase-intro">
           <p class="ns-latin">EXPORT CATALOG</p>
           <p class="ns-small">${featured.length} ${t('home.showcase.item')}</p>
-          ${btn(t('home.showcase.viewAll'), `/${lang}/products/`, 'primary')}
+          ${btn(t('home.showcase.viewAll'), route(`/${lang}/products/`), 'primary')}
         </div>
         ${featured.map((p) => productCard(p, { reveal: false })).join('')}
         <div class="showcase-outro">
@@ -69,7 +70,7 @@ export function renderManufacturing(ctx) {
               (s, i) => `
             <article class="mfg-step" data-reveal="fade-up">
               <div class="mfg-media img-frame">
-                <img src="${STEP_MEDIA[i]}" alt="${s.t}" loading="lazy" class="img-cover img-duo"/>
+                <img src="${withBase(STEP_MEDIA[i])}" alt="${s.t}" loading="lazy" class="img-cover img-duo"/>
                 <span class="mfg-num ns-latin">0${i + 1}</span>
               </div>
               <div class="mfg-body">
@@ -172,7 +173,7 @@ export function renderPresence(ctx) {
           </article>`
             )
             .join('')}
-          <a class="link-arrow" href="/${lang}/contact/">${t('contact.hero.title')} ${icon('arrow-right', 'icon-flip')}</a>
+          <a class="link-arrow" href="${route(`/${lang}/contact/`)}">${t('contact.hero.title')} ${icon('arrow-right', 'icon-flip')}</a>
         </div>
       </div>
     </div>
@@ -223,7 +224,7 @@ export function initPresence(ctx) {
         globe.dispose();
       };
     } catch (e) {
-      wrap.innerHTML = `<img src="/images/atmos/cargo-aerial.webp" alt="" class="img-cover" style="border-radius:6px"/>`;
+      wrap.innerHTML = `<img src="${withBase('/images/atmos/cargo-aerial.webp')}" alt="" class="img-cover" style="border-radius:6px"/>`;
     }
   };
   setup();

@@ -1,10 +1,11 @@
-/**
+﻿/**
  * Product data index — merges all product groups.
  * Access layer used by pages; later replaceable with API responses (see api.js).
  */
 import { coffeeProducts } from './coffee.js';
 import { foodProducts } from './food.js';
 import { tradeProducts } from './trade.js';
+import { route } from '../../utils/base.js';
 
 export const products = [...coffeeProducts, ...foodProducts, ...tradeProducts];
 
@@ -16,7 +17,7 @@ export const findBySlug = (slug, lang) =>
 
 /** Find product by stable id regardless of language slug. */
 export const getProductUrl = (product, lang) =>
-  `/${lang}/products/${encodeURIComponent(product.slug[lang])}/`;
+  route(`/${lang}/products/${encodeURIComponent(product.slug[lang])}/`);
 
 export const getFeatured = () => products.filter((p) => p.featured);
 

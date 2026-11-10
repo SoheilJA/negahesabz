@@ -9,6 +9,7 @@ import { sectionHeader, btn, mediaFrame, breadcrumb } from '../components/ui.js'
 import { icon, refreshIcons } from '../utils/icons.js';
 import { company } from '../data/company.js';
 import { brands } from '../data/brands.js';
+import { route, withBase } from '../utils/base.js';
 
 export default {
   render(ctx) {
@@ -32,13 +33,13 @@ export default {
     setSEO({
       title: t('meta.about.title'),
       desc: t('meta.about.desc'),
-      path: `/${ctx.lang}/about/`,
+      path: route(`/${ctx.lang}/about/`),
     });
     setJSONLD([
       organizationLD(ctx.lang),
       breadcrumbLD([
-        { name: t('nav.home'), path: `/${ctx.lang}/` },
-        { name: t('nav.about'), path: `/${ctx.lang}/about/` },
+        { name: t('nav.home'), path: route(`/${ctx.lang}/`) },
+        { name: t('nav.about'), path: route(`/${ctx.lang}/about/`) },
       ]),
     ]);
     refreshIcons();
@@ -50,12 +51,12 @@ function renderPageHero(ctx) {
   return `
   <section class="page-hero bg-forest-deep">
     <div class="img-frame ph-bg">
-      <img src="/images/atmos/cargo-aerial.webp" alt="" class="img-cover" data-parallax="0.18"/>
+      <img src="${withBase('/images/atmos/cargo-aerial.webp')}" alt="" class="img-cover" data-parallax="0.18"/>
     </div>
     <div class="ph-veil"></div>
     <div class="container-x ph-content">
       ${breadcrumb([
-        { name: t('product.breadcrumbHome'), path: `/${ctx.lang}/` },
+        { name: t('product.breadcrumbHome'), path: route(`/${ctx.lang}/`) },
         { name: t('nav.about') },
       ])}
       <p class="ns-label" data-reveal="fade-up">${t('about.hero.kicker')}</p>
@@ -83,7 +84,7 @@ function renderStory(ctx) {
           <p class="ns-body" data-reveal="fade-up" data-delay="0.08">${t('about.story.p2')}</p>
           <p class="ns-body" data-reveal="fade-up" data-delay="0.16">${t('about.story.p3')}</p>
           <div class="about-cta" data-reveal="fade-up">
-            ${btn(t('about.cta.btn'), `/${lang}/contact/`, 'ghost-dark', { icon: false })}
+            ${btn(t('about.cta.btn'), route(`/${lang}/contact/`), 'ghost-dark', { icon: false })}
           </div>
         </div>
         <div class="story-media" data-reveal="clip">
@@ -149,7 +150,7 @@ function renderPortfolio(ctx) {
         ${aboutTiles(lang)}
       </div>
       <div class="about-portfolio-cta" data-reveal="fade-up">
-        ${btn(t('home.showcase.viewAll'), `/${lang}/products/`, 'primary')}
+        ${btn(t('home.showcase.viewAll'), route(`/${lang}/products/`), 'primary')}
       </div>
     </div>
   </section>`;
@@ -157,20 +158,20 @@ function renderPortfolio(ctx) {
 
 function aboutTiles(lang) {
   const tiles = [
-    { img: '/images/atmos/coffee-beans.webp', href: `/${lang}/products/?cat=coffee` },
-    { img: '/images/gallery/dates-luxury.webp', href: `/${lang}/products/?cat=dates` },
-    { img: '/images/atmos/pistachio.webp', href: `/${lang}/products/?cat=pistachio` },
-    { img: '/images/atmos/saffron.webp', href: `/${lang}/products/?cat=saffron` },
-    { img: '/images/atmos/tea.webp', href: `/${lang}/products/?cat=tea` },
-    { img: '/images/atmos/raisins.webp', href: `/${lang}/products/?cat=dried-fruits` },
-    { img: '/images/atmos/tomato.webp', href: `/${lang}/products/?cat=tomato-paste` },
-    { img: '/images/products/p-38581.webp', href: `/${lang}/products/?cat=milk-powder` },
+    { img: '/images/atmos/coffee-beans.webp', href: route(`/${lang}/products/?cat=coffee`) },
+    { img: '/images/gallery/dates-luxury.webp', href: route(`/${lang}/products/?cat=dates`) },
+    { img: '/images/atmos/pistachio.webp', href: route(`/${lang}/products/?cat=pistachio`) },
+    { img: '/images/atmos/saffron.webp', href: route(`/${lang}/products/?cat=saffron`) },
+    { img: '/images/atmos/tea.webp', href: route(`/${lang}/products/?cat=tea`) },
+    { img: '/images/atmos/raisins.webp', href: route(`/${lang}/products/?cat=dried-fruits`) },
+    { img: '/images/atmos/tomato.webp', href: route(`/${lang}/products/?cat=tomato-paste`) },
+    { img: '/images/products/p-38581.webp', href: route(`/${lang}/products/?cat=milk-powder`) },
   ];
   return tiles
     .map(
       (tile) => `
       <a class="about-tile img-frame" href="${tile.href}">
-        <img src="${tile.img}" alt="" class="img-cover img-duo" loading="lazy"/>
+        <img src="${withBase(tile.img)}" alt="" class="img-cover img-duo" loading="lazy"/>
       </a>`
     )
     .join('');
@@ -211,7 +212,7 @@ function renderCertificates(ctx) {
             (c) => `
         <figure class="cert-card" data-reveal="fade-up">
           <div class="img-frame cert-img">
-            <img src="${c.img}" alt="${loc(c.caption)}" loading="lazy" class="img-cover"/>
+            <img src="${withBase(c.img)}" alt="${loc(c.caption)}" loading="lazy" class="img-cover"/>
           </div>
           <figcaption class="ns-tiny">${loc(c.caption)}</figcaption>
         </figure>`
@@ -237,7 +238,7 @@ function renderBrandsSection(ctx) {
           <p class="badge-brand">${b.latin}</p>
           <h3 class="ns-h3">${loc(b.local)} — ${loc(b.tagline)}</h3>
           <p class="ns-small">${loc(b.desc)}</p>
-          <a class="link-arrow" href="/${lang}/products/?brand=${b.id}">${t('home.brands.viewProducts')} ${icon('arrow-right', 'icon-flip')}</a>
+          <a class="link-arrow" href="${route(`/${lang}/products/?brand=${b.id}`)}">${t('home.brands.viewProducts')} ${icon('arrow-right', 'icon-flip')}</a>
         </article>`
           )
           .join('')}
@@ -277,7 +278,7 @@ function renderLeadership(ctx) {
             (l) => `
         <figure class="lead-card" data-reveal="fade-up">
           <div class="img-frame lead-photo">
-            <img src="${l.img}" alt="${loc(l.name)}" loading="lazy" class="img-cover img-duo"/>
+            <img src="${withBase(l.img)}" alt="${loc(l.name)}" loading="lazy" class="img-cover img-duo"/>
           </div>
           <figcaption>
             <h3 class="ns-h3">${loc(l.name)}</h3>
@@ -297,14 +298,14 @@ function renderFinalCTA(ctx) {
   return `
   <section class="cta-final">
     <div class="img-frame cta-bg">
-      <img src="/images/atmos/containers.webp" alt="" class="img-cover" data-parallax="0.15"/>
+      <img src="${withBase('/images/atmos/containers.webp')}" alt="" class="img-cover" data-parallax="0.15"/>
     </div>
     <div class="cta-veil"></div>
     <div class="container-x cta-content">
       <h2 class="ns-display" data-reveal="fade-up">${t('about.cta.title')}</h2>
       <p class="ns-lead" data-reveal="fade-up" data-delay="0.12">${t('about.cta.sub')}</p>
       <div data-reveal="fade-up" data-delay="0.24">
-        ${btn(t('about.cta.btn'), `/${lang}/contact/`, 'primary')}
+        ${btn(t('about.cta.btn'), route(`/${lang}/contact/`), 'primary')}
       </div>
     </div>
   </section>`;

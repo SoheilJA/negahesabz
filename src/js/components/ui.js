@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Shared UI builders — section headers, buttons, breadcrumbs,
  * product cards, brand badges, stats, ornament.
  */
@@ -7,6 +7,7 @@ import { icon } from '../utils/icons.js';
 import { getCategory } from '../data/categories.js';
 import { getBrand } from '../data/brands.js';
 import { getProductUrl } from '../data/products/index.js';
+import { withBase } from '../utils/base.js';
 
 /** Standard section header (label + title + optional sub). */
 export function sectionHeader({ label, title, sub = '', htmlTag = 'h2' }) {
@@ -49,7 +50,7 @@ export function productCard(p, { reveal = true } = {}) {
   <article class="card-product" ${reveal ? 'data-reveal="fade-up"' : ''}>
     <a href="${getProductUrl(p, lang)}" aria-label="${name}">
       <div class="cp-media">
-        <img src="${p.img}" alt="${name}" loading="lazy" width="760" height="760" />
+        <img src="${withBase(p.img)}" alt="${name}" loading="lazy" width="760" height="760" />
       </div>
       <div class="cp-body">
         <p class="cp-cat">${cat ? loc(cat.name) : ''}</p>
@@ -77,7 +78,7 @@ export function statBlock(value, label, { prefix = '' } = {}) {
 export function mediaFrame(src, alt, { ratio = '4/3', parallax = 0, className = '' } = {}) {
   return `
   <figure class="img-frame media-ratio ${className}" style="--ratio:${ratio}">
-    <img src="${src}" alt="${alt}" loading="lazy" class="img-cover img-duo" ${parallax ? `data-parallax="${parallax}"` : ''}/>
+    <img src="${withBase(src)}" alt="${alt}" loading="lazy" class="img-cover img-duo" ${parallax ? `data-parallax="${parallax}"` : ''}/>
   </figure>`;
 }
 

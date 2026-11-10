@@ -1,9 +1,7 @@
-/**
- * Homepage — Section 01: cinematic hero with the Three.js trade globe.
- */
-import { t, loc } from '../../core/i18n.js';
+﻿import { t, loc } from '../../core/i18n.js';
 import { btn } from '../../components/ui.js';
 import { company } from '../../data/company.js';
+import { route, withBase } from '../../utils/base.js';
 
 export function renderHero(ctx) {
   const lang = ctx.lang;
@@ -19,8 +17,8 @@ export function renderHero(ctx) {
       </h1>
       <p class="ns-lead hero-sub" data-reveal="fade-up" data-delay="0.34">${t('hero.sub')}</p>
       <div class="hero-ctas" data-reveal="fade-up" data-delay="0.46">
-        ${btn(t('hero.ctaPrimary'), `/${lang}/about/`, 'primary')}
-        ${btn(t('hero.ctaSecondary'), `/${lang}/products/`, 'ghost-light')}
+        ${btn(t('hero.ctaPrimary'), route(`/${lang}/about/`), 'primary')}
+        ${btn(t('hero.ctaSecondary'), route(`/${lang}/products/`), 'ghost-light')}
       </div>
       <div class="hero-meta ns-tiny" data-reveal="fade-up" data-delay="0.6">
         <span>${loc(company.foundedClaim)}</span>
@@ -62,7 +60,7 @@ export function initHero(ctx) {
         globe.dispose();
       };
     } catch (e) {
-      wrap.innerHTML = `<img src="/images/atmos/cargo-sunset.webp" alt="" class="img-cover" style="opacity:.5"/>`;
+      wrap.innerHTML = `<img src="${withBase('/images/atmos/cargo-sunset.webp')}" alt="" class="img-cover" style="opacity:.5"/>`;
     }
   };
   setup();

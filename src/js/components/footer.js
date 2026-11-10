@@ -1,90 +1,100 @@
-/**
- * Footer — rich branded footer: identity, description, quick links,
- * categories, contact offices, language switcher, copyright.
+﻿/**
+ * Footer â€” company info, nav, categories, offices, language switcher, legal.
  */
-import { t, loc, LANGS, LANG_META, getLang } from '../core/i18n.js';
-import { altPath } from '../core/router.js';
+import { t, LANGS, LANG_META, loc, getLang } from '../core/i18n.js';
+import { company } from '../data/company.js';
 import { renderLogo } from './logo.js';
 import { icon, refreshIcons } from '../utils/icons.js';
-import { company } from '../data/company.js';
 import { categories } from '../data/categories.js';
+import { route } from '../utils/base.js';
+
+function officeLines() {
+  const hq = company.offices.find((o) => o.primary);
+  const intl = company.offices.filter((o) => !o.primary);
+  return `
+    <div class="nf-contact">
+      <i data-lucide="map-pin" aria-hidden="true"></i>
+      <span>${loc(hq.address)}</span>
+    </div>
+    <a class="nf-contact" href="tel:${hq.phone}" dir="ltr">
+      <i data-lucide="phone" aria-hidden="true"></i>
+      <span>${hq.phoneDisplay}</span>
+    </a>
+    <a class="nf-contact" href="tel:${hq.mobile}" dir="ltr">
+      <i data-lucide="smartphone" aria-hidden="true"></i>
+      <span>${hq.mobileDisplay}</span>
+    </a>
+    <a class="nf-contact" href="mailto:${company.email}" dir="ltr">
+      <i data-lucide="mail" aria-hidden="true"></i>
+      <span>${company.email}</span>
+    </a>
+    <div class="nf-intl">
+      ${intl.map((o) => `<a href="tel:${o.phone}" dir="ltr" title="${loc(o.country)}">${loc(o.city)}: ${o.phoneDisplay}</a>`).join('')}
+    </div>`;
+}
 
 export function renderFooter() {
   const lang = getLang();
-  const hq = company.offices.find((o) => o.primary);
-
-  const links = [
-    { key: 'home', href: `/${lang}/` },
-    { key: 'about', href: `/${lang}/about/` },
-    { key: 'catalog', href: `/${lang}/products/` },
-    { key: 'contact', href: `/${lang}/contact/` },
-  ];
-
+  const year = new Date().getFullYear();
   return `
-  <footer class="ns-footer bg-forest-deep">
+  <div class="ns-footer bg-forest-deep">
     <div class="container-wide">
       <div class="ns-footer-grid">
-        <div class="nf-col nf-col-brand">
+        <div class="nf-col nf-brand">
           ${renderLogo('light')}
-          <p class="ns-small nf-desc">${t('footer.about.desc')}</p>
-          <p class="ns-tiny" style="color:var(--color-gold)">${t('footer.about.regNo')}: <span class="ltr-nums" dir="ltr">${company.registrationNo}</span></p>
+          <p class="nf-desc ns-small">${t('footer.desc')}</p>
+          <div class="nf-reg ns-tiny">${t('footer.regNo')}: ${company.registrationNo}</div>
         </div>
-        <nav class="nf-col" aria-label="${t('footer.nav.title')}">
-          <h3 class="nf-title">${t('footer.nav.title')}</h3>
-          ${links
-            .map(
-              (l) =>
-                `<a href="${l.href}"><span class="nf-dot"></span>${t(`nav.${l.key}`)}</a>`
-            )
-            .join('')}
+        <nav class="nf-col nf-nav" aria-label="${t('nav.menu')}">
+          <h4 class="nf-title">${t('footer.company')}</h4>
+          <a href="${route(`/${lang}/`)}"><span class="nf-dot"></span>${t('nav.home')}</a>
+          <a href="${route(`/${lang}/about/`)}"><span class="nf-dot"></span>${t('nav.about')}</a>
+          <a href="${route(`/${lang}/products/`)}"><span class="nf-dot"></span>${t('nav.products')}</a>
+          <a href="${route(`/${lang}/contact/`)}"><span class="nf-dot"></span>${t('nav.contact')}</a>
         </nav>
-        <nav class="nf-col" aria-label="${t('footer.categories.title')}">
-          <h3 class="nf-title">${t('footer.categories.title')}</h3>
+        <nav class="nf-col nf-cats" aria-label="${t('nav.categories')}">
+          <h4 class="nf-title">${t('footer.categories')}</h4>
           ${categories
-            .slice(0, 8)
-            .map((c) => `<a href="/${lang}/products/?cat=${c.id}"><span class="nf-dot"></span>${loc(c.name)}</a>`)
+            .slice(0, 7)
+            .map((c) => `<a href="${route(`/${lang}/products/?cat=${c.id}`)}"><span class="nf-dot"></span>${loc(c.name)}</a>`)
             .join('')}
-          <a href="/${lang}/products/" style="color:var(--color-gold)">${t('catalog.allCategories')}</a>
+          <a href="${route(`/${lang}/products/`)}" style="color:var(--color-gold)">${t('catalog.allCategories')}</a>
         </nav>
-        <div class="nf-col nf-col-contact">
-          <h3 class="nf-title">${t('footer.contact.title')}</h3>
-          <a href="tel:${hq.phone}" class="nf-contact"><i data-lucide="phone"></i><span dir="ltr">${hq.phoneDisplay}</span></a>
-          <a href="mailto:${company.email}" class="nf-contact"><i data-lucide="mail"></i><span dir="ltr">${company.email}</span></a>
-          <p class="nf-contact"><i data-lucide="map-pin"></i><span>${loc(hq.address)}</span></p>
-          <p class="nf-contact"><i data-lucide="globe"></i><span dir="ltr">${company.website}</span></p>
+        <div class="nf-col nf-contact-col">
+          <h4 class="nf-title">${t('footer.contact')}</h4>
+          ${officeLines()}
         </div>
-        <div class="nf-col nf-col-langs">
-          <h3 class="nf-title">${t('footer.langs.title')}</h3>
+        <div class="nf-col nf-lang-col">
+          <h4 class="nf-title">${t('footer.languages')}</h4>
           <div class="nf-langs">
             ${LANGS.map(
-              (l) =>
-                `<button type="button" data-lang="${l}" class="nf-lang ${l === lang ? 'is-active' : ''}">${LANG_META[l].label} <span style="opacity:.5">${LANG_META[l].short}</span></button>`
+              (l) => `
+            <button type="button" class="nf-lang ${l === lang ? 'is-active' : ''}" data-lang="${l}">
+              <span>${LANG_META[l].label}</span>
+              <span class="ns-tiny" dir="ltr">${LANG_META[l].short}</span>
+            </button>`
             ).join('')}
           </div>
         </div>
       </div>
-      <div class="nf-bottom">
-        <p class="ns-tiny">© <span dir="ltr">2017–${new Date().getFullYear()}</span> ${t('brand.wordmark')} — ${t('footer.rights')}</p>
-        <button type="button" class="nf-top" aria-label="${t('common.toTop')}">${t('common.toTop')} ${icon('arrow-up')}</button>
+      <div class="ns-footer-bottom">
+        <p class="ns-tiny">${t('footer.copy', { year })}</p>
       </div>
     </div>
-  </footer>`;
+  </div>`;
 }
 
 export function initFooter() {
-  const footer = document.querySelector('.ns-footer');
-  refreshIcons();
-
+  const footer = document.getElementById('ns-footer');
+  if (!footer) return;
   footer.querySelectorAll('[data-lang]').forEach((btn) => {
     btn.addEventListener('click', () => {
       const target = btn.getAttribute('data-lang');
       if (target === getLang()) return;
-      import('../core/router.js').then(({ navigate }) => navigate(altPath(target)));
+      import('../core/router.js').then(({ navigate, altPath }) => navigate(altPath(target)));
     });
   });
-
-  const topBtn = footer.querySelector('.nf-top');
-  topBtn.addEventListener('click', () => {
-    import('../animations/motion.js').then(({ scrollToTop }) => scrollToTop(false));
-  });
+  refreshIcons();
 }
+
+export default renderFooter;

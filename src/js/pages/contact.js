@@ -10,6 +10,7 @@ import { icon, refreshIcons } from '../utils/icons.js';
 import { company } from '../data/company.js';
 import { api } from '../data/api.js';
 import { showToast } from '../components/ui.js';
+import { route, withBase } from '../utils/base.js';
 
 export default {
   render(ctx) {
@@ -31,7 +32,7 @@ export default {
     setSEO({
       title: t('meta.contact.title'),
       desc: t('meta.contact.desc'),
-      path: `/${ctx.lang}/contact/`,
+      path: route(`/${ctx.lang}/contact/`),
     });
     setJSONLD(organizationLD(ctx.lang));
     refreshIcons();
@@ -47,11 +48,11 @@ function renderHero(ctx) {
   return `
   <section class="page-hero page-hero-sm bg-forest-deep">
     <div class="img-frame ph-bg">
-      <img src="/images/gallery/meeting-room.webp" alt="" class="img-cover" data-parallax="0.12"/>
+      <img src="${withBase('/images/gallery/meeting-room.webp')}" alt="" class="img-cover" data-parallax="0.12"/>
     </div>
     <div class="ph-veil"></div>
     <div class="container-x ph-content">
-      ${breadcrumb([{ name: t('product.breadcrumbHome'), path: `/${lang}/` }, { name: t('nav.contact') }])}
+      ${breadcrumb([{ name: t('product.breadcrumbHome'), path: route(`/${lang}/`) }, { name: t('nav.contact') }])}
       <p class="ns-label" data-reveal="fade-up">${t('contact.hero.kicker')}</p>
       <h1 class="ns-display" data-reveal="fade-up" data-delay="0.1">${t('contact.hero.title')}</h1>
       <p class="ns-lead" data-reveal="fade-up" data-delay="0.2">${t('contact.hero.sub')}</p>
@@ -186,7 +187,7 @@ function renderCTA(ctx) {
   return `
   <section class="cta-final">
     <div class="img-frame cta-bg">
-      <img src="/images/atmos/port-cranes.webp" alt="" class="img-cover" data-parallax="0.14"/>
+      <img src="${withBase('/images/atmos/port-cranes.webp')}" alt="" class="img-cover" data-parallax="0.14"/>
     </div>
     <div class="cta-veil"></div>
     <div class="container-x cta-content">

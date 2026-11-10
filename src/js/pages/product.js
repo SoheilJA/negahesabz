@@ -11,6 +11,7 @@ import { findBySlug, getRelated, getProductUrl } from '../data/products/index.js
 import { getCategory } from '../data/categories.js';
 import { getBrand } from '../data/brands.js';
 import { SPEC_KEYS } from '../data/products/helpers.js';
+import { route, withBase } from '../utils/base.js';
 
 export default {
   render(ctx) {
@@ -28,9 +29,9 @@ export default {
     <section class="section-pad-sm bg-forest-deep product-hero">
       <div class="container-x">
         ${breadcrumb([
-          { name: t('product.breadcrumbHome'), path: `/${lang}/` },
-          { name: t('product.breadcrumbCatalog'), path: `/${lang}/products/` },
-          { name: cat ? loc(cat.name) : '' , path: `/${lang}/products/?cat=${product.category}` },
+          { name: t('product.breadcrumbHome'), path: route(`/${lang}/`) },
+          { name: t('product.breadcrumbCatalog'), path: route(`/${lang}/products/`) },
+          { name: cat ? loc(cat.name) : '' , path: route(`/${lang}/products/?cat=${product.category}`) },
           { name },
         ])}
       </div>
@@ -43,7 +44,7 @@ export default {
             ${gallery
               .map(
                 (g, i) => `
-              <img src="${g}" alt="${name}" ${i === 0 ? '' : 'class="is-hidden"'} data-idx="${i}" loading="${i === 0 ? 'eager' : 'lazy'}" />`
+              <img src="${withBase(g)}" alt="${name}" ${i === 0 ? '' : 'class="is-hidden"'} data-idx="${i}" loading="${i === 0 ? 'eager' : 'lazy'}" />`
               )
               .join('')}
           </div>
@@ -53,7 +54,7 @@ export default {
               .map(
                 (g, i) => `
             <button type="button" class="gal-thumb ${i === 0 ? 'is-active' : ''}" data-idx="${i}" aria-label="${name} ${i + 1}">
-              <img src="${g}" alt="" loading="lazy"/>
+              <img src="${withBase(g)}" alt="" loading="lazy"/>
             </button>`
               )
               .join('')}
@@ -88,7 +89,7 @@ export default {
           <div class="product-cta" data-reveal="fade-up">
             ${btn(
               t('product.inquiry'),
-              `/${lang}/contact/?type=${product.category === 'construction' || product.category === 'petrochemical' ? 'sourcing' : 'export'}&product=${encodeURIComponent(name)}`,
+              `${route(`/${lang}/contact/`)}?type=${product.category === 'construction' || product.category === 'petrochemical' ? 'sourcing' : 'export'}&product=${encodeURIComponent(name)}`,
               'primary'
             )}
             <p class="ns-tiny">${t('product.inquiryNote')}</p>
@@ -104,7 +105,7 @@ export default {
           ${related.map((p) => productCard(p, { reveal: false })).join('')}
         </div>
         <div class="related-back" data-reveal="fade-up">
-          ${btn(t('product.back'), `/${lang}/products/`, 'ghost-dark', { icon: 'back' })}
+          ${btn(t('product.back'), route(`/${lang}/products/`), 'ghost-dark', { icon: 'back' })}
         </div>
       </div>
     </section>`;
@@ -131,9 +132,9 @@ export default {
       organizationLD(lang),
       productLD(product, lang, getProductUrl(product, lang)),
       breadcrumbLD([
-        { name: t('nav.home'), path: `/${lang}/` },
-        { name: t('nav.products'), path: `/${lang}/products/` },
-        { name: cat ? loc(cat.name) : '', path: `/${lang}/products/?cat=${product.category}` },
+        { name: t('nav.home'), path: route(`/${lang}/`) },
+        { name: t('nav.products'), path: route(`/${lang}/products/`) },
+        { name: cat ? loc(cat.name) : '', path: route(`/${lang}/products/?cat=${product.category}`) },
         { name: loc(product.name), path: getProductUrl(product, lang) },
       ]),
     ]);
