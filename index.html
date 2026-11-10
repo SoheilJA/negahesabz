@@ -1,58 +1,91 @@
 <!doctype html>
 <html lang="fa" dir="rtl">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/png" href="%BASE_URL%images/772-logo.png" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#102B24" />
-    <title>هلدینگ بازرگانی نگاه سبز</title>
-    <meta
-      name="description"
-      content="هلدینگ نگاه سبز؛ همراه مطمئن تجارت بین‌المللی، تولید، فرآوری و صادرات محصولات باکیفیت ایرانی."
-    />
-    <link rel="canonical" href="https://negahesabz.com/fa/" />
-    <link rel="alternate" hreflang="fa" href="https://negahesabz.com/fa/" />
-    <link rel="alternate" hreflang="en" href="https://negahesabz.com/en/" />
-    <link rel="alternate" hreflang="ru" href="https://negahesabz.com/ru/" />
-    <link rel="alternate" hreflang="ar" href="https://negahesabz.com/ar/" />
-    <link rel="alternate" hreflang="x-default" href="https://negahesabz.com/fa/" />
-    <meta property="og:type" content="website" />
-    <meta property="og:site_name" content="Negah Sabz Holding" />
-    <meta property="og:title" content="هلدینگ بازرگانی نگاه سبز" />
-    <meta
-      property="og:description"
-      content="از ظرفیت تولید ایران تا بازارهای جهانی — تجارت بین‌المللی، تولید، فرآوری و صادرات محصولات باکیفیت ایرانی."
-    />
-    <meta property="og:image" content="https://negahesabz.com/images/og-cover.jpg" />
-    <meta name="twitter:card" content="summary_large_image" />
-    <style>
-      /* Critical first-paint styles (before bundle loads) */
-      html { background: #102b24; }
-      body { margin: 0; background: #102b24; }
-      #ns-boot { position: fixed; inset: 0; display: grid; place-items: center; background: #102b24; z-index: 9998; }
-      .ns-boot-mark { width: 56px; height: 56px; object-fit: contain; opacity: 0.9; animation: nsBootPulse 1.6s ease-in-out infinite; }
-      @keyframes nsBootPulse { 0%,100% { opacity:.35; transform:scale(.97) } 50% { opacity:.9; transform:scale(1) } }
-    </style>
-    <script>
-      (function(l) {
-        if (l.search && l.search[1] === 'p') {
-          var decoded = l.search.slice(3).split('&').map(function(s){ return s.replace(/~and~/g,'&'); }).join('?');
-          var base = '/negahesabz';
-          window.history.replaceState(null, null, base + decoded + l.hash);
-        }
-      }(window.location));
-    </script>
-  </head>
-  <body>
-    <div id="ns-boot" aria-hidden="true">
-      <img src="%BASE_URL%images/772-logo.png" class="ns-boot-mark" alt="" />
-    </div>
-    <a href="#main" class="ns-skip">بریم به محتوا</a>
-    <div id="ns-preloader" aria-hidden="true"></div>
-    <header id="ns-header" class="ns-header"></header>
-    <main id="main"></main>
-    <footer id="ns-footer"></footer>
-    <div id="ns-toast" role="status" aria-live="polite"></div>
-    <script type="module" src="/src/js/main.js"></script>
-  </body>
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/png" href="/images/772-logo.png" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#102B24" />
+  <title>هلدینگ بازرگانی نگاه سبز</title>
+  <meta name="description"
+    content="هلدینگ نگاه سبز؛ همراه مطمئن تجارت بین‌المللی، تولید، فرآوری و صادرات محصولات باکیفیت ایرانی." />
+  <link rel="canonical" href="https://negahesabz.com/fa/" />
+  <link rel="alternate" hreflang="fa" href="https://negahesabz.com/fa/" />
+  <link rel="alternate" hreflang="en" href="https://negahesabz.com/en/" />
+  <link rel="alternate" hreflang="ru" href="https://negahesabz.com/ru/" />
+  <link rel="alternate" hreflang="ar" href="https://negahesabz.com/ar/" />
+  <link rel="alternate" hreflang="x-default" href="https://negahesabz.com/fa/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Negah Sabz Holding" />
+  <meta property="og:title" content="هلدینگ بازرگانی نگاه سبز" />
+  <meta property="og:description"
+    content="از ظرفیت تولید ایران تا بازارهای جهانی — تجارت بین‌المللی، تولید، فرآوری و صادرات محصولات باکیفیت ایرانی." />
+  <meta property="og:image" content="https://negahesabz.com/images/og-cover.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <style>
+    /* Critical first-paint styles (before bundle loads) */
+    html {
+      background: #102b24;
+    }
+
+    body {
+      margin: 0;
+      background: #102b24;
+    }
+
+    #ns-boot {
+      position: fixed;
+      inset: 0;
+      display: grid;
+      place-items: center;
+      background: #102b24;
+      z-index: 9998;
+    }
+
+    .ns-boot-mark {
+      width: 56px;
+      height: 56px;
+      object-fit: contain;
+      opacity: 0.9;
+      animation: nsBootPulse 1.6s ease-in-out infinite;
+    }
+
+    @keyframes nsBootPulse {
+
+      0%,
+      100% {
+        opacity: .35;
+        transform: scale(.97)
+      }
+
+      50% {
+        opacity: .9;
+        transform: scale(1)
+      }
+    }
+  </style>
+  <script>
+    (function (l) {
+      if (l.search && l.search[1] === 'p') {
+        var decoded = l.search.slice(3).split('&').map(function (s) { return s.replace(/~and~/g, '&'); }).join('?');
+        var base = '/negahesabz';
+        window.history.replaceState(null, null, base + decoded + l.hash);
+      }
+    }(window.location));
+  </script>
+</head>
+
+<body>
+  <div id="ns-boot" aria-hidden="true">
+    <img src="/images/772-logo.png" class="ns-boot-mark" alt="" />
+  </div>
+  <a href="#main" class="ns-skip">بریم به محتوا</a>
+  <div id="ns-preloader" aria-hidden="true"></div>
+  <header id="ns-header" class="ns-header"></header>
+  <main id="main"></main>
+  <footer id="ns-footer"></footer>
+  <div id="ns-toast" role="status" aria-live="polite"></div>
+  <script type="module" src="/src/js/main.js"></script>
+</body>
+
 </html>
