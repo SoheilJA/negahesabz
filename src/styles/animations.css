@@ -1,0 +1,219 @@
+/* ============================================================
+   NEGAH SABZ — ANIMATION STYLES
+   Preloader, page transitions, keyframes, reveal initial states
+   ============================================================ */
+
+/* ---------- PRELOADER ---------- */
+#ns-preloader {
+  position: fixed;
+  inset: 0;
+  z-index: 9600;
+  background: var(--color-forest-deep);
+  display: none;
+  place-items: center;
+  overflow: hidden;
+}
+#ns-preloader.is-active { display: grid; }
+
+.ns-pre-inner {
+  position: relative;
+  z-index: 9551;
+  width: min(92vw, 560px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2.2rem;
+  text-align: center;
+}
+.ns-pre-world {
+  width: 100%;
+  opacity: 0.5;
+}
+.ns-pre-world .ns-pre-dots { fill: rgba(165, 181, 164, 0.34); }
+.ns-pre-route {
+  fill: none;
+  stroke: var(--color-gold);
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-dasharray: 6 7;
+}
+.ns-pre-wordmark {
+  font-family: var(--font-fa);
+  font-weight: 800;
+  font-size: clamp(2rem, 7vw, 3.2rem);
+  line-height: 1.25;
+  color: var(--color-ivory);
+  display: flex;
+  gap: 0.35rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.ns-pre-wordmark .wm-ch { display: inline-block; }
+.ns-pre-latin { color: var(--color-sage); }
+.ns-pre-progress {
+  width: min(64vw, 300px);
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  align-items: center;
+}
+.ns-pre-bar {
+  width: 100%;
+  height: 1px;
+  background: rgba(232, 224, 208, 0.15);
+  position: relative;
+  overflow: hidden;
+}
+.ns-pre-bar-fill {
+  position: absolute;
+  inset-block: 0;
+  inset-inline-start: 0;
+  width: 0%;
+  background: linear-gradient(to inline-end, var(--color-gold), var(--color-gold-bright));
+}
+.ns-pre-count {
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  letter-spacing: 0.28em;
+  color: rgba(232, 224, 208, 0.55);
+  font-variant-numeric: tabular-nums;
+  direction: ltr;
+}
+.ns-pre-veil {
+  position: fixed;
+  inset: 0;
+  z-index: 9550;
+  background: var(--color-forest-deep);
+  pointer-events: none;
+}
+.ns-pre-veil.is-top { inset-block-end: 50%; }
+.ns-pre-veil.is-bottom { inset-block-start: 50%; }
+
+/* ---------- PAGE TRANSITION ---------- */
+.ns-page-fade {
+  position: fixed;
+  inset: 0;
+  z-index: 950;
+  background: var(--color-forest-deep);
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* ---------- REVEAL INITIAL STATES ----------
+   Activated only when JS marks html.ns-anim so no-JS users
+   and search engines always see full content. */
+html.ns-anim [data-reveal] { opacity: 0; }
+html.ns-anim [data-reveal="fade-up"] { transform: translateY(34px); }
+html.ns-anim [data-reveal="fade-start"] { transform: translateX(calc(-1 * 40px)); }
+html.ns-anim [data-reveal="fade-end"] { transform: translateX(40px); }
+html.ns-anim [data-reveal="scale"] { transform: scale(0.94); }
+html.ns-anim [data-reveal="clip"] {
+  opacity: 1;
+  clip-path: inset(12% 8% 12% 8%);
+}
+
+/* ---------- HERO ---------- */
+.hero-veil {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(58% 74% at 72% 40%, rgba(16, 43, 36, 0.2) 0%, rgba(16, 43, 36, 0.72) 68%, rgba(16, 43, 36, 0.95) 100%),
+    linear-gradient(to block-end, rgba(16, 43, 36, 0.25), rgba(16, 43, 36, 0.88));
+}
+[dir="rtl"] .hero-veil {
+  background:
+    radial-gradient(58% 74% at 28% 40%, rgba(16, 43, 36, 0.2) 0%, rgba(16, 43, 36, 0.72) 68%, rgba(16, 43, 36, 0.95) 100%),
+    linear-gradient(to block-end, rgba(16, 43, 36, 0.25), rgba(16, 43, 36, 0.88));
+}
+
+.hero-scroll-cue {
+  position: absolute;
+  inset-inline-start: 50%;
+  inset-block-end: 1.6rem;
+  translate: -50% 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6rem;
+  color: rgba(232, 224, 208, 0.6);
+  font-size: 0.68rem;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+html[lang="fa"] .hero-scroll-cue,
+html[lang="ar"] .hero-scroll-cue { letter-spacing: 0.05em; }
+.hero-scroll-cue .line {
+  width: 1px;
+  height: 3.2rem;
+  background: linear-gradient(to block-end, var(--color-gold), transparent);
+  position: relative;
+  overflow: hidden;
+}
+.hero-scroll-cue .line::after {
+  content: "";
+  position: absolute;
+  inset-block-start: -40%;
+  inset-inline: 0;
+  height: 40%;
+  background: var(--color-ivory);
+  animation: ns-cue-drop 2.2s var(--ease-io) infinite;
+}
+@keyframes ns-cue-drop {
+  0% { inset-block-start: -40%; }
+  100% { inset-block-start: 110%; }
+}
+
+/* ---------- GLOBE ---------- */
+.ns-globe-wrap { position: relative; }
+.ns-globe-wrap canvas { display: block; width: 100%; height: 100%; }
+.ns-globe-fallback {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+}
+
+/* ---------- MARQUEE / FLOAT ---------- */
+.float-soft { animation: ns-float 7s ease-in-out infinite; }
+@keyframes ns-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+}
+
+.pulse-dot {
+  position: relative;
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: var(--color-gold);
+}
+.pulse-dot::after {
+  content: "";
+  position: absolute;
+  inset: -5px;
+  border-radius: 999px;
+  border: 1px solid var(--color-gold);
+  animation: ns-pulse-ring 2.4s ease-out infinite;
+}
+@keyframes ns-pulse-ring {
+  0% { transform: scale(0.5); opacity: 1; }
+  100% { transform: scale(1.9); opacity: 0; }
+}
+
+/* Timeline line draw */
+.journey-line {
+  stroke-dasharray: var(--len, 1200);
+  stroke-dashoffset: var(--len, 1200);
+}
+
+/* ---------- 404 ---------- */
+.ns-404-code {
+  font-family: var(--font-display);
+  font-size: clamp(6rem, 22vw, 13rem);
+  line-height: 1;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(183, 138, 72, 0.55);
+  letter-spacing: 0.05em;
+  direction: ltr;
+}

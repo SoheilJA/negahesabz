@@ -1,0 +1,386 @@
+{
+  "meta": {
+    "home": {
+      "title": "Negah Sabz Trading Holding | International Trade, Manufacturing & Export",
+      "desc": "Negah Sabz — a trusted partner for international trade, manufacturing, processing and export of premium Iranian products, from coffee and dates to saffron and pistachios."
+    },
+    "about": {
+      "title": "About Negah Sabz | International Trading Holding",
+      "desc": "More than 20 years of experience exporting Iranian products — a coffee processing plant, fully automated date sorting lines and an international trade network."
+    },
+    "contact": {
+      "title": "Contact Negah Sabz | Business Inquiry",
+      "desc": "Reach Negah Sabz offices in Mashhad, Tehran, Russia and Oman, or submit your business collaboration request."
+    },
+    "catalog": {
+      "title": "Export Products | Negah Sabz Catalog",
+      "desc": "The Negah Sabz export catalog — coffee, export dates, pistachios, saffron, tea, milk powder and other Iranian products."
+    },
+    "productTitle": "{name} | Negah Sabz Export Products",
+    "productDesc": "{name} from the export portfolio of Negah Sabz Holding — ready for wholesale supply and export.",
+    "notfound": {
+      "title": "Page not found | Negah Sabz",
+      "desc": "The page you are looking for does not exist."
+    }
+  },
+  "brand": {
+    "wordmark": "Negah Sabz",
+    "latin": "NEGAH SABZ",
+    "holding": "International Trading Holding",
+    "tagline": "From Iran’s production capacity to global markets"
+  },
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "products": "Products",
+    "contact": "Contact",
+    "categories": "Product categories",
+    "menu": "Menu",
+    "close": "Close",
+    "langLabel": "Select language",
+    "cta": "Start a conversation"
+  },
+  "hero": {
+    "kicker": "International Trading Holding — Reg. No. 62435",
+    "titleA": "From Iran’s production capacity",
+    "titleB": "to global markets",
+    "sub": "Negah Sabz — a trusted partner for international trade, manufacturing, processing and export of premium Iranian products.",
+    "ctaPrimary": "Discover the holding",
+    "ctaSecondary": "Browse products",
+    "scroll": "Scroll",
+    "network": "International trade network"
+  },
+  "home": {
+    "intro": {
+      "label": "Introduction",
+      "title": "A reliable chain from sourcing to export",
+      "p1": "Negah Sabz Holding works to develop international trade and bring high-quality Iranian products to regional and global markets. Through a reliable chain of sourcing, processing, manufacturing, packaging, quality control and export, we deliver Iranian products with the right standards and packaging to our clients and trade partners.",
+      "p2": "The team’s experience in trading and exporting food products — from coffee and instant beverages to export dates, pistachios, saffron and milk powder — supports broad activity across very different markets.",
+      "cta": "More about Negah Sabz",
+      "since": "Two decades of experience"
+    },
+    "glance": {
+      "label": "At a glance",
+      "title": "Numbers built by consistent work",
+      "stats": {
+        "years": "years of export experience",
+        "products": "export products",
+        "countries": "destination countries for Negah Sabz dates",
+        "offices": "international sales offices",
+        "categories": "export product categories"
+      }
+    },
+    "divisions": {
+      "label": "Business divisions",
+      "title": "Six pillars of the holding",
+      "sub": "Negah Sabz is not merely a product seller — it is a group that coordinates the whole chain, from manufacturing and processing to packaging, documentation and transportation.",
+      "items": [
+        {
+          "t": "International Trade",
+          "d": "Import and export of goods, sourcing from trusted origins and market development for Iranian products.",
+          "n": "01"
+        },
+        {
+          "t": "Food Manufacturing",
+          "d": "In-house plants and packaging lines with quality control at every stage.",
+          "n": "02"
+        },
+        {
+          "t": "Coffee & Beverages",
+          "d": "Specialized coffee roasting and instant powdered beverage production under the Suncreez brand.",
+          "n": "03"
+        },
+        {
+          "t": "Date Sorting & Packaging",
+          "d": "A fully automated, hygienic line for sorting and packing export dates in varied weights and formats.",
+          "n": "04"
+        },
+        {
+          "t": "Agricultural Exports",
+          "d": "Pistachios, saffron, raisins, fruit and vegetables — sourced, packaged and exported to target markets.",
+          "n": "05"
+        },
+        {
+          "t": "Logistics & Transport",
+          "d": "Rail, road and sea freight, transit and customs clearance in destination countries.",
+          "n": "06"
+        }
+      ]
+    },
+    "showcase": {
+      "label": "Selected products",
+      "title": "The export product basket",
+      "sub": "A sample of the goods that leave Negah Sabz plants and warehouses every day for regional and world markets.",
+      "viewAll": "View full catalog",
+      "item": "product"
+    },
+    "manufacturing": {
+      "label": "Manufacturing",
+      "title": "From raw bean to export pack",
+      "sub": "In Negah Sabz plants, every product passes several controlled stations before it reaches the market.",
+      "steps": [
+        {
+          "t": "Coffee roasting",
+          "d": "Smart roasting tailored to bean type, flavour characteristics and customer requirements."
+        },
+        {
+          "t": "Instant beverage processing",
+          "d": "Powdered instant beverage production — coffee-mix, latte, cappuccino and hot chocolate."
+        },
+        {
+          "t": "Sorting & separation",
+          "d": "A fully automated, hygienic sorting line for export dates."
+        },
+        {
+          "t": "Automated packaging",
+          "d": "Packing in varied weights, sizes and designs matched to the destination market."
+        },
+        {
+          "t": "Quality control",
+          "d": "Inspecting product and packaging before order preparation and export documentation."
+        }
+      ],
+      "galleryNote": "Photographs from the holding’s plants and packaging lines"
+    },
+    "journey": {
+      "label": "Export process",
+      "title": "The journey of an export order",
+      "sub": "Full coordination from product selection to delivery in the destination country.",
+      "steps": [
+        { "t": "Product selection & sourcing", "d": "Understanding client needs and sourcing from trusted farms and producers." },
+        { "t": "Processing & production", "d": "Carrying out required processes in the holding’s plants." },
+        { "t": "Quality control", "d": "Inspecting product specifications against agreement and standards." },
+        { "t": "Packaging", "d": "Packaging matched to the destination market and transport requirements." },
+        { "t": "Export documentation", "d": "Preparing trade documents and clearing outbound customs." },
+        { "t": "International transport", "d": "Rail, road or sea freight chosen by the client." },
+        { "t": "Destination delivery", "d": "Customs clearance and orderly delivery in the target country." }
+      ]
+    },
+    "presence": {
+      "label": "Global presence",
+      "title": "Offices and target markets",
+      "sub": "Negah Sabz sales offices in Russia, Tajikistan, Uzbekistan and Oman anchor the holding’s continuous presence in regional markets.",
+      "hq": "Headquarters — Mashhad",
+      "office": "Sales office",
+      "drag": "Drag to rotate"
+    },
+    "brands": {
+      "label": "House brands",
+      "title": "Two brands, one standard",
+      "productsCount": "products",
+      "viewProducts": "View brand products",
+      "explore": "Explore the range"
+    },
+    "services": {
+      "label": "Trade services",
+      "title": "Beyond selling a product",
+      "sub": "Negah Sabz coordinates the entire international trade process — from import and customs clearance to transportation, transit and market research.",
+      "detail": "Service details"
+    },
+    "why": {
+      "label": "Why Negah Sabz",
+      "title": "Six principles behind every partnership",
+      "items": [
+        { "t": "Product quality & selection", "d": "Choosing the right product and focusing on quality is the first step of every domestic and international partnership." },
+        { "t": "Plant & packaging infrastructure", "d": "Better control of preparation and products delivered in packaging suited to each market." },
+        { "t": "Sourcing & preparation", "d": "Orders prepared to agreed specifications in packaging matched to the destination market." },
+        { "t": "Export experience", "d": "Familiarity with trade and export procedures keeps the path from order to shipment coordinated." },
+        { "t": "Flexibility", "d": "Packaging type, weight, design and product mix are assessed for each target market and client request." },
+        { "t": "Long-term partnership", "d": "Negah Sabz seeks sustainable trade relationships with importers and distributors." }
+      ]
+    },
+    "leadership": {
+      "label": "Leadership",
+      "title": "Negah Sabz management",
+      "sub": "Portraits and titles from the holding’s official pages"
+    },
+    "insights": {
+      "label": "Negah Sabz blog",
+      "title": "Knowledge & trade, updated",
+      "viewAll": "All articles",
+      "readMore": "Read article",
+      "guide": "Guide"
+    },
+    "cta": {
+      "title": "Ready to collaborate in global markets?",
+      "sub": "Get product information, review supply capacity and start trading with the Negah Sabz team — we are one message away.",
+      "btn": "Request business collaboration"
+    }
+  },
+  "about": {
+    "hero": {
+      "kicker": "About Negah Sabz",
+      "title": "Where Iranian quality meets world markets",
+      "sub": "A company that stands beside you from sourcing to export."
+    },
+    "story": {
+      "label": "The story",
+      "title": "From Khorasan, for the world",
+      "p1": "Negah Sabz was founded to develop international trade and introduce high-quality Iranian products to regional and global markets. We build a reliable chain of sourcing, processing, manufacturing, packaging, quality control and export — delivering Iranian products with the right standards and packaging to clients and partners across international markets.",
+      "p2": "With more than 20 years of exporting Iranian products and sales offices in Russia, Tajikistan, Uzbekistan and Oman, Negah Sabz Holding begins every partnership on the basis of mutual collaboration in export and import.",
+      "p3": "Among the holding’s activities are building a coffee processing plant for coffee and powdered coffee products, and a fully automated date sorting and export packaging plant."
+    },
+    "facilities": {
+      "label": "Industrial infrastructure",
+      "title": "Plants and packaging lines",
+      "p1": "Owning dedicated food production and packaging lines is one of the group’s most important capacities — enabling tighter control over quality, packaging and the preparation of domestic and export orders.",
+      "p2": "The packaging lines prepare products in a variety of weights, sizes and formats, so orders are matched to client specifications and destination markets.",
+      "list1": "Specialized coffee roasting in eastern Iran",
+      "list2": "Instant powdered beverage production",
+      "list3": "Fully automated export date sorting",
+      "list4": "Hygienic packaging tailored to each market",
+      "list5": "Quality control and export documentation"
+    },
+    "coffee": {
+      "label": "Coffee & beverages",
+      "title": "The specialized coffee roastery",
+      "p1": "Negah Sabz’s Mashhad roastery — equipped with smart roasting machinery, a specialist team and deep industry experience — is among the largest and longest-running roasting operations in eastern Iran.",
+      "p2": "Using intelligent roasting equipment and skilled staff, the plant tailors roasting to bean type, flavour profile and customer requirements, and releases its coffee under the Suncreez brand."
+    },
+    "markets": {
+      "label": "Target markets",
+      "title": "Present across regional and global markets",
+      "sub": "Mazafati, Piarom and Kaluteh dates reach more than 20 countries; Shadiar saffron is exported to the UAE, Iraq, China, Hong Kong, Australia, Europe, Canada and the US.",
+      "listTitle": "Recognised markets and destinations"
+    },
+    "certs": {
+      "label": "Documents & certificates",
+      "title": "Quality credentials",
+      "sub": "Documents published in the company’s official gallery (ISO 22000, DNV ISO 9001, TUV Iran).",
+      "regNo": "Company registration no."
+    },
+    "values": {
+      "label": "Philosophy",
+      "title": "We are not here to sell just one product",
+      "p": "Our goal is a durable collaboration — from product selection to production or sourcing, quality control, packaging, order preparation, trade documentation and shipment. Along this path, product quality, supply consistency, appropriate packaging and precise coordination of the export process are the principles of our work.",
+      "futureTitle": "The road ahead",
+      "futureP": "Negah Sabz uses its plant, production and packaging capacity and its Iranian supply network to strengthen the link between the Iranian producer and the international buyer. Successful export is more than shipping goods — it is a combination of quality, sustainable supply, the right packaging and market insight."
+    },
+    "cta": {
+      "title": "Start with Negah Sabz",
+      "sub": "From a single inquiry to a reliable sourcing and export chain.",
+      "btn": "Begin a collaboration"
+    }
+  },
+  "contact": {
+    "hero": {
+      "kicker": "Contact",
+      "title": "Let’s start the conversation",
+      "sub": "For product information, supply capacity review and starting a trade partnership, complete the inquiry form or reach the Negah Sabz office closest to you."
+    },
+    "form": {
+      "title": "Business inquiry form",
+      "name": "Full name",
+      "namePh": "e.g. Ali Rezaei",
+      "company": "Company",
+      "companyPh": "Your business name",
+      "email": "Email",
+      "emailPh": "name@company.com",
+      "phone": "Phone",
+      "phonePh": "+98 912 000 0000",
+      "country": "Country",
+      "countryPh": "Select country",
+      "inquiryType": "Inquiry type",
+      "types": {
+        "export": "Export inquiry",
+        "import": "Import inquiry",
+        "sourcing": "Product sourcing",
+        "manufacturing": "Manufacturing & packaging",
+        "logistics": "Transport & logistics",
+        "general": "General cooperation"
+      },
+      "interest": "Product or service of interest",
+      "interestPh": "e.g. Shadiar Mazafati dates 650g",
+      "message": "Message",
+      "messagePh": "Summarise your request, approximate volume and target market…",
+      "submit": "Send inquiry",
+      "sending": "Sending…",
+      "errors": {
+        "name": "Please enter your name.",
+        "email": "Please enter a valid email address.",
+        "phone": "Please enter a valid phone number.",
+        "inquiryType": "Please select an inquiry type.",
+        "message": "Please write your message (at least 10 characters).",
+        "country": "Please enter your country."
+      },
+      "offlineNote": "The submission service is not yet connected to a backend; your inquiry was validated locally. Until the backend is live, please use the direct contact channels.",
+      "okNote": "Your inquiry has been recorded. The Negah Sabz team will contact you shortly."
+    },
+    "offices": {
+      "label": "Negah Sabz offices",
+      "title": "Headquarters and international offices",
+      "call": "Call",
+      "email": "Email",
+      "primary": "Headquarters"
+    },
+    "info": {
+      "label": "Contact information",
+      "phone": "Phone",
+      "web": "Website"
+    }
+  },
+  "catalog": {
+    "hero": {
+      "kicker": "Product catalog",
+      "title": "Negah Sabz export products",
+      "sub": "From coffee and instant beverages to export dates, pistachios, saffron and industrial trade lines — all with authentic product photography."
+    },
+    "searchPh": "Search products…",
+    "all": "All",
+    "allCategories": "All categories",
+    "brands": "Brand",
+    "anyBrand": "All brands",
+    "results": "{n} products",
+    "noResults": "No products found",
+    "noResultsHint": "Try changing your search or filters.",
+    "categoryEmpty": "No public product list is published in this category yet; products on this line are supplied to order and tailored to client requirements. Contact us for details.",
+    "loadMore": "Show more products",
+    "showing": "Showing {a} of {b} products",
+    "wholesaleNote": "This catalog addresses wholesale buyers, importers and trade partners; pricing is quoted after an inquiry is received."
+  },
+  "product": {
+    "breadcrumbHome": "Home",
+    "breadcrumbCatalog": "Products",
+    "specs": "Specifications",
+    "packaging": "Packaging",
+    "packagingNote": "Weight, packaging type and design can be tailored to the destination country and client requirements.",
+    "inquiry": "Request information & collaboration",
+    "inquiryNote": "This opens the contact page with the selected product pre-filled in the form.",
+    "related": "Related products",
+    "gallery": "Product image gallery",
+    "brand": "Brand",
+    "category": "Category",
+    "back": "Back to catalog",
+    "share": "Share"
+  },
+  "footer": {
+    "about": {
+      "title": "Negah Sabz",
+      "desc": "Negah Sabz International Holding — more than 20 years exporting Iranian products, with sales offices in Russia, Tajikistan, Uzbekistan and Oman, active in manufacturing, processing, packaging and food export.",
+      "regNo": "Registration No. 62435"
+    },
+    "nav": { "title": "Quick links" },
+    "categories": { "title": "Product categories" },
+    "contact": { "title": "Contact" },
+    "langs": { "title": "Languages" },
+    "rights": "All rights reserved by Negah Sabz Trading Holding.",
+    "builtNote": "Designed & built — the new Negah Sabz frontend"
+  },
+  "common": {
+    "viewDetails": "View details",
+    "viewAll": "View all",
+    "readMore": "Read more",
+    "loading": "Loading…",
+    "language": "Language",
+    "toTop": "Back to top",
+    "img": "Product image",
+    "logo": "Negah Sabz logo",
+    "notFoundTitle": "Page not found",
+    "notFoundSub": "The address you entered does not exist on this site or has changed.",
+    "notFoundCta": "Back to homepage"
+  },
+  "preloader": {
+    "entering": "Entering",
+    "intl": "INTERNATIONAL TRADING HOLDING"
+  }
+}

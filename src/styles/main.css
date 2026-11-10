@@ -1,0 +1,263 @@
+@import "tailwindcss";
+
+/* ============================================================
+   NEGAH SABZ — DESIGN TOKENS (Tailwind CSS v4)
+   ============================================================ */
+@theme {
+  /* Brand palette */
+  --color-forest: #173d32;
+  --color-forest-deep: #102b24;
+  --color-forest-mid: #1e4a3c;
+  --color-forest-soft: #2e5c4b;
+  --color-charcoal: #202522;
+  --color-ivory: #e8e0d0;
+  --color-ivory-dark: #ddd2ba;
+  --color-offwhite: #f7f6f1;
+  --color-gold: #b78a48;
+  --color-gold-soft: #d9c08f;
+  --color-gold-bright: #e6cf9e;
+  --color-sage: #a5b5a4;
+  --color-stone: #747b75;
+  --color-line-dark: rgba(232, 224, 208, 0.14);
+  --color-line-light: rgba(23, 61, 50, 0.14);
+
+  /* Typography */
+  --font-fa: "Vazirmatn", "Segoe UI", Tahoma, sans-serif;
+  --font-body: "Inter", "Segoe UI", Helvetica, Arial, sans-serif;
+  --font-display: "Playfair Display", "Times New Roman", serif;
+
+  /* Motion */
+  --ease-lux: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-io: cubic-bezier(0.65, 0, 0.35, 1);
+
+  /* Layout */
+  --spacing-gutter: 1.25rem;
+}
+
+/* ============================================================
+   BASE
+   ============================================================ */
+:root {
+  --ns-font-body: var(--font-fa);
+  --ns-font-head: var(--font-fa);
+}
+html[lang="en"],
+html[lang="ru"] {
+  --ns-font-body: var(--font-body);
+  --ns-font-head: var(--font-display);
+}
+html[lang="ar"] {
+  --ns-font-body: var(--font-fa);
+  --ns-font-head: var(--font-fa);
+}
+
+html {
+  scroll-behavior: auto; /* Lenis manages scrolling */
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: var(--ns-font-body);
+  background: var(--color-forest-deep);
+  color: var(--color-ivory);
+  line-height: 1.75;
+  overflow-x: hidden;
+  font-feature-settings: "ss01";
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: var(--color-gold);
+  color: var(--color-forest-deep);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-gold);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* Thin branded scrollbar */
+::-webkit-scrollbar { width: 10px; }
+::-webkit-scrollbar-track { background: var(--color-forest-deep); }
+::-webkit-scrollbar-thumb { background: var(--color-forest-soft); border-radius: 8px; }
+::-webkit-scrollbar-thumb:hover { background: var(--color-gold); }
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* ============================================================
+   TYPOGRAPHY SYSTEM — fluid sizes
+   ============================================================ */
+.ns-display {
+  font-family: var(--ns-font-head);
+  font-weight: 800;
+  line-height: 1.12;
+  letter-spacing: -0.015em;
+  font-size: clamp(2.5rem, 1.2rem + 6.2vw, 5.4rem);
+}
+html[lang="en"] .ns-display,
+html[lang="ru"] .ns-display {
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  line-height: 1.08;
+}
+.ns-h1 {
+  font-family: var(--ns-font-head);
+  font-weight: 800;
+  line-height: 1.16;
+  font-size: clamp(2rem, 1.2rem + 3.6vw, 3.6rem);
+}
+html[lang="en"] .ns-h1,
+html[lang="ru"] .ns-h1 { font-weight: 600; }
+.ns-h2 {
+  font-family: var(--ns-font-head);
+  font-weight: 800;
+  line-height: 1.22;
+  font-size: clamp(1.65rem, 1.1rem + 2.6vw, 2.75rem);
+}
+html[lang="en"] .ns-h2,
+html[lang="ru"] .ns-h2 { font-weight: 600; }
+.ns-h3 {
+  font-family: var(--ns-font-head);
+  font-weight: 700;
+  line-height: 1.3;
+  font-size: clamp(1.3rem, 1rem + 1.4vw, 1.85rem);
+}
+html[lang="en"] .ns-h3,
+html[lang="ru"] .ns-h3 { font-weight: 600; }
+.ns-lead {
+  font-size: clamp(1.02rem, 0.96rem + 0.5vw, 1.3rem);
+  line-height: 1.9;
+  color: color-mix(in srgb, currentColor 82%, transparent);
+}
+.ns-body { line-height: 1.85; }
+.ns-small { font-size: 0.85rem; line-height: 1.7; }
+.ns-tiny { font-size: 0.72rem; line-height: 1.5; letter-spacing: 0.06em; }
+
+/* Latin brand text — letterspaced caps */
+.ns-latin {
+  font-family: var(--font-body);
+  letter-spacing: 0.34em;
+  text-transform: uppercase;
+  font-size: 0.68rem;
+  font-weight: 500;
+}
+
+/* Eyebrow / section label */
+.ns-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--color-gold);
+}
+html[lang="fa"] .ns-label,
+html[lang="ar"] .ns-label { letter-spacing: 0.06em; font-size: 0.78rem; }
+.ns-label::before {
+  content: "";
+  width: 2.4rem;
+  height: 1px;
+  background: linear-gradient(to inline-end, var(--color-gold), transparent);
+}
+[dir="rtl"] .ns-label::before {
+  background: linear-gradient(to left, var(--color-gold), transparent);
+}
+
+/* ============================================================
+   LAYOUT
+   ============================================================ */
+.container-x {
+  width: 100%;
+  max-width: 82rem;
+  margin-inline: auto;
+  padding-inline: clamp(1.1rem, 4vw, 2.5rem);
+}
+.container-wide {
+  width: 100%;
+  max-width: 96rem;
+  margin-inline: auto;
+  padding-inline: clamp(1.1rem, 4vw, 2.5rem);
+}
+.section-pad { padding-block: clamp(4rem, 9vw, 8.5rem); }
+.section-pad-sm { padding-block: clamp(2.5rem, 6vw, 5rem); }
+
+/* Section surfaces */
+.bg-forest { background: var(--color-forest); color: var(--color-ivory); }
+.bg-forest-deep { background: var(--color-forest-deep); color: var(--color-ivory); }
+.bg-ivory { background: var(--color-ivory); color: var(--color-forest-deep); }
+.bg-offwhite { background: var(--color-offwhite); color: var(--color-forest-deep); }
+.bg-charcoal { background: var(--color-charcoal); color: var(--color-ivory); }
+
+/* Hairlines */
+.hairline-dark { border-block-start: 1px solid var(--color-line-dark); }
+.hairline-light { border-block-start: 1px solid var(--color-line-light); }
+
+/* Image treatment */
+.img-cover { width: 100%; height: 100%; object-fit: cover; }
+.img-frame {
+  position: relative;
+  overflow: hidden;
+  border-radius: 4px;
+}
+.img-frame::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  box-shadow: inset 0 0 0 1px rgba(16, 43, 36, 0.12);
+  pointer-events: none;
+}
+.img-duo {
+  filter: saturate(0.92) contrast(1.04);
+  transition: transform 1.2s var(--ease-lux), filter 0.8s ease;
+}
+.img-duo:hover { filter: saturate(1.05) contrast(1.06); }
+
+/* ============================================================
+   ACCESSIBILITY
+   ============================================================ */
+.ns-skip {
+  position: fixed;
+  inset-block-start: -100%;
+  inset-inline-start: 1rem;
+  z-index: 10000;
+  background: var(--color-gold);
+  color: var(--color-forest-deep);
+  padding: 0.6rem 1.2rem;
+  border-radius: 4px;
+  font-weight: 700;
+  transition: inset-block-start 0.3s;
+}
+.ns-skip:focus { inset-block-start: 1rem; }
+
+.vh {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* RTL icon mirroring */
+[dir="rtl"] .icon-flip { transform: scaleX(-1); }
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
