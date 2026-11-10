@@ -50,12 +50,11 @@ html.lenis, html.lenis body { height: auto; }
   font-size: clamp(2rem, 7vw, 3.2rem);
   line-height: 1.25;
   color: var(--color-ivory);
-  display: flex;
-  gap: 0.35rem;
-  justify-content: center;
-  flex-wrap: wrap;
+  text-align: center;
 }
 .ns-pre-wordmark .wm-ch { display: inline-block; }
+.ns-pre-logo { display: flex; justify-content: center; }
+.ns-pre-logo .ns-logo-mark { width: 72px; height: 72px; object-fit: contain; }
 .ns-pre-latin { color: var(--color-sage); }
 .ns-pre-progress {
   width: min(64vw, 300px);
